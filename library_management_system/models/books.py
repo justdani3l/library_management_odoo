@@ -15,6 +15,6 @@ class Books(models.Model):
     rating = fields.Text(string='Rating', required=True)
     book_price = fields.Text(string='Book Price', required=True)
     image = fields.Image(string='Image')
-    author = fields.Char(string='Author', required=True)
-    categories = fields.Text(string='Categories', required=True)
+    author = fields.Many2one(comodel_name='library.authors', string='Author', required=True)
+    categories = fields.Many2one(comodel_name='library.categories', string='Categories', required=True)
 

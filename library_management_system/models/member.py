@@ -5,7 +5,6 @@ class Members(models.Model):
     _name = 'library.member'
     _description = 'Library Member'
 
-    memberID = fields.Integer(string='Member ID')
     name = fields.Char(String='Name', required=True)
     email = fields.Char(string='Email', required=True)
     address = fields.Char(string='Address', required=True)

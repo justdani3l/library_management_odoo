@@ -5,7 +5,6 @@ class Configuration(models.Model):
     _name = 'library.configuration'
     _description = 'Library Configuration'
 
-    config_id = fields.Integer()
-    config_name = fields.Char()
-    config_value = fields.Char()
+    config_name = fields.Char(string='Configuration Name', required=True)
+    config_value = fields.Char(string='Configuration Value')
 

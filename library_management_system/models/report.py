@@ -5,7 +5,6 @@ class Report(models.Model):
     _name = 'library.report'
     _description = 'Library Report'
 
-    report_id = fields.Integer()
-    employee_id = fields.Integer()
-    report_date = fields.Date(string='Report Date', required=True)
+    employee_id = fields.Many2one(comodel_name='library.employees', string='Employee', required=True)
+    report_date = fields.Date(string='Report Date', default=fields.Date.context_today)
     description = fields.Text(string='Description', required=True)
