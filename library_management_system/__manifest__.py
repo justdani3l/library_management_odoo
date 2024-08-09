@@ -9,6 +9,8 @@
     'depends': ['base'],
     'data': [
         'views/member_views.xml',
+        'views/books_views.xml',
+        'views/menu.xml',
     ],
 
     'installable': True,
