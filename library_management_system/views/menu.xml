@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+    <menuitem id="library_root_menu" name="Library Management"/>
+    <menuitem id="library_root_menu" name="Library Management"/>
 </odoo>

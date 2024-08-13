@@ -2,11 +2,11 @@
 <odoo>
     <data>
 
-        <record id="member_form_view" model="ir.ui.view">
-            <field name="name">library.member.form</field>
-            <field name="model">library.member</field>
+        <record id="employees_form_view" model="ir.ui.view">
+            <field name="name">library.employees.form</field>
+            <field name="model">library.employees</field>
             <field name="arch" type="xml">
-                <form string="Library Members">
+                <form string="Employees">
                     <sheet>
                         <field name="image" widget="image" class="oe_avatar"/>
                         <div class="oe_title">
@@ -19,12 +19,10 @@
                             <group>
                                 <field name="email"/>
                                 <field name="phone"/>
-                                <field name="city"/>
                             </group>
                             <group>
-                                <field name="address"/>
-                                <field name="gender"/>
-                                <field name="membership_date"/>
+                                <field name="job_title"/>
+                                <field name="hire_date"/>
                             </group>
                         </group>
                     </sheet>
@@ -32,14 +30,30 @@
             </field>
         </record>
 
-        <record id="member_kanban_view" model="ir.ui.view">
-            <field name="name">library.member.kanban</field>
-            <field name="model">library.member</field>
+        <record id="employees_tree_view" model="ir.ui.view">
+            <field name="name">library.employees.tree</field>
+            <field name="model">library.employees</field>
+            <field name="arch" type="xml">
+                <tree string="Employees">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="job_title"/>
+                    <field name="hire_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="employees_kanban_view" model="ir.ui.view">
+            <field name="name">library.employees.kanban</field>
+            <field name="model">library.employees</field>
             <field name="arch" type="xml">
                 <kanban class="o_kanban_mobile" sample="1">
                     <field name="name"/>
                     <field name="email"/>
-                    <field name="membership_date"/>
+                    <field name="phone"/>
+                    <field name="job_title"/>
+                    <field name="hire_date"/>
                     <field name="id" />
                     <field name="image"/>
                     <templates>
@@ -48,7 +62,7 @@
                                 <div t-attf-class="oe_kanban_global_click">
                                     <b>
                                         <div style="font-size:20px;" class="o_kanban_image_fill_top">
-                                            <img t-att-src="kanban_image('library.member','image', record.id.raw_value)"
+                                            <img t-att-src="kanban_image('library.employees','image', record.id.raw_value)"
                                                  style="width:100%; height:166px;"/>
                                         </div>
                                         <br/>
@@ -68,7 +82,13 @@
                                     <field name="email"/>
                                 </t>
                                 <div>
-                                    <field name="membership_date"/>
+                                    <field name="phone"/>
+                                </div>
+                                <div>
+                                    <field name="job_title"/>
+                                </div>
+                                <div>
+                                    <field name="hire_date"/>
                                 </div>
                             </div>
                         </t>
@@ -77,29 +97,18 @@
             </field>
         </record>
 
-        <record id="member_tree_view" model="ir.ui.view">
-            <field name="name">library.member.tree</field>
-            <field name="model">library.member</field>
-            <field name="arch" type="xml">
-                <tree string="Library Members">
-                    <field name="name"/>
-                    <field name="email"/>
-                    <field name="phone"/>
-                    <field name="city"/>
-                    <field name="gender"/>
-                    <field name="membership_date"/>
-                </tree>
+        <record id="employees_act_window" model="ir.actions.act_window">
+            <field name="name">Employees</field>
+            <field name="res_model">library.employees</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Library Employees.
+                </p>
             </field>
         </record>
 
-        <record id="member_act_window" model="ir.actions.act_window">
-            <field name="name">Library Members</field>
-            <field name="res_model">library.member</field>
-            <field name="view_mode">kanban,tree,form</field>
-        </record>
+        <menuitem name="Employees" id="employees_menu" parent="library_root_menu" action="employees_act_window"/>
 
-
-
-        <menuitem name="Member" id="member_menu" parent="library_root_menu" action="member_act_window"/>
     </data>
 </odoo>

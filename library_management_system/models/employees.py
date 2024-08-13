@@ -10,4 +10,5 @@ class Employees(models.Model):
     phone = fields.Char(string='Phone Number', required=True)
     job_title = fields.Char(string='Job Title', required=True)
     hire_date = fields.Date(string='Hire Date', required=True)
+    image = fields.Image(string='Image')
 

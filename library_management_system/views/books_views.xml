@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
-        <menuitem id="library_root_menu" name="Library Management"/>
-
         <record id="books_form_view" model="ir.ui.view">
             <field name="name">library.books.form</field>
             <field name="model">library.books</field>
@@ -61,25 +58,49 @@
             <field name="arch" type="xml">
                 <pivot string="Library Books">
                     <field name="book_title" type="row"/>
-                    <field name="book_price" type="measure"/>
+                    <field name="book_price" type="col"/>
                 </pivot>
             </field>
         </record>
+
 
         <record id="books_kanban_view" model="ir.ui.view">
             <field name="name">library.books.kanban</field>
             <field name="model">library.books</field>
             <field name="arch" type="xml">
-                <kanban>
+                <kanban class="o_kanban_mobile" sample="1">
                     <field name="book_title"/>
                     <field name="book_price"/>
+                    <field name="author"/>
+                    <field name="id" />
+                    <field name="image"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click o_res_partner_kanban">
-                                <div class="oe_kanban_details">
-                                    <strong class="o_kanban_record_title oe_partner_heading">
-                                        <field name="author"/>
-                                    </strong>
+                            <div style="width: 150px; height: 185px;">
+                                <div t-attf-class="oe_kanban_global_click">
+                                    <b>
+                                        <div style="font-size:20px;" class="o_kanban_image_fill_top">
+                                            <img t-att-src="kanban_image('library.books','image', record.id.raw_value)"
+                                                 style="width:100%; height:166px;"/>
+                                        </div>
+                                        <br/>
+                                    </b>
+                                </div>
+                            </div>
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong>
+                                            <field name="book_title"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <t t-if="record.book_price.value">
+                                    <hr class="mt8 mb8"/>
+                                    <field name="book_price"/>
+                                </t>
+                                <div>
+                                    <field name="author"/>
                                 </div>
                             </div>
                         </t>
@@ -94,11 +115,10 @@
             <field name="view_mode">kanban,tree,form,pivot</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    There is no examples click here to add new ModelTitle.
+                    There is no examples click here to add new Books.
                 </p>
             </field>
         </record>
-
 
 
         <menuitem name="Books" id="books_menu" parent="library_root_menu" action="books_act_window"/>
