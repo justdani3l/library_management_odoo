@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="library_root_menu" name="Library Management"/>
-    <menuitem id="library_root_menu" name="Library Management"/>
+    <menuitem id="library_root_menu" name="Library Management" sequence="1"/>
+    <menuitem name="Member" id="member_menu" parent="library_root_menu" sequence="1"/>
+    <menuitem name="Books" id="books_menu" parent="library_root_menu" sequence="2"/>
+    <menuitem name="Invoice" id="invoice_menu" parent="library_root_menu" sequence="3"/>
+    <menuitem name="Employees" id="employees_menu" parent="library_root_menu" sequence="4"/>
+    <menuitem name="Configuration" id="configuration_menu" parent="library_root_menu" sequence="5"/>
 </odoo>

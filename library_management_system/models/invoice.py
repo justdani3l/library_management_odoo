@@ -6,9 +6,9 @@ class Invoice(models.Model):
     _description = 'Library Invoice'
 
     member_id = fields.Many2one(comodel_name='library.member', string='Member', required=True)
-    issue_id = fields.Many2one(comodel_name='library.issue', string='Issued Book')
-    invoice_date = fields.Date(string='Invoice Date', default=fields.Date.context_today)
+    book_id = fields.Many2one(comodel_name='library.books', string='Book Name', required=True)
+    issue_date = fields.Date(string='Issue Date', default=fields.Date.context_today)
     return_date = fields.Date(string='Return Date', required=True)
-    total_amount = fields.Text(string='Total Amount', required=True)
+    employee_id = fields.Many2one(comodel_name='library.employees', string='Handled by Employee')
     payment_status = fields.Selection([('Paid', 'Paid'), ('Progress', 'Progress'), ('Unpaid', 'Unpaid')],
                                       string='Payment Status', default='Unpaid')

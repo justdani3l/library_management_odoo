@@ -46,7 +46,7 @@
             </field>
         </record>
 
-        <menuitem name="Configuration" id="configuration_menu" parent="library_root_menu" action="configuration_act_window"/>
+        <menuitem name="Configuration" id="manage_configuration_menu" parent="configuration_menu" action="configuration_act_window"/>
 
     </data>
 </odoo>

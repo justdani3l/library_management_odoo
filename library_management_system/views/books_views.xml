@@ -17,7 +17,7 @@
                         <group>
                             <group>
                                 <field name="isbn"/>
-                                <field name="author"/>
+                                <field name="author_id"/>
                                 <field name="publisher_name"/>
                                 <field name="production_year"/>
                                 <field name="pages"/>
@@ -42,7 +42,7 @@
                 <tree string="Library Books">
                     <field name="book_title"/>
                     <field name="isbn"/>
-                    <field name="author"/>
+                    <field name="author_id"/>
                     <field name="publisher_name"/>
                     <field name="production_year"/>
                     <field name="categories"/>
@@ -71,8 +71,12 @@
                 <kanban class="o_kanban_mobile" sample="1">
                     <field name="book_title"/>
                     <field name="book_price"/>
-                    <field name="author"/>
-                    <field name="id" />
+                    <field name="author_id"/>
+                    <field name="production_year"/>
+                    <field name="language"/>
+                    <field name="rating"/>
+                    <field name="categories"/>
+                    <field name="id"/>
                     <field name="image"/>
                     <templates>
                         <t t-name="kanban-box">
@@ -100,7 +104,19 @@
                                     <field name="book_price"/>
                                 </t>
                                 <div>
-                                    <field name="author"/>
+                                    <field name="author_id"/>
+                                </div>
+                                <div>
+                                    <field name="production_year"/>
+                                </div>
+                                <div>
+                                    <field name="language"/>
+                                </div>
+                                <div>
+                                    <field name="rating"/>
+                                </div>
+                                <div>
+                                    <field name="categories"/>
                                 </div>
                             </div>
                         </t>
@@ -121,7 +137,7 @@
         </record>
 
 
-        <menuitem name="Books" id="books_menu" parent="library_root_menu" action="books_act_window"/>
+        <menuitem name="Manage Books" id="manage_books_menu" parent="books_menu" action="books_act_window" sequence="1"/>
 
     </data>
 </odoo>

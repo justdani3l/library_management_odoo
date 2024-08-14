@@ -46,7 +46,7 @@
             </field>
         </record>
 
-        <menuitem name="Library Categories" id="categories_menu" parent="books_menu" action="categories_act_window"/>
+        <menuitem name="Library Categories" id="categories_menu" parent="books_menu" action="categories_act_window" sequence="2"/>
 
     </data>
 </odoo>

@@ -27,6 +27,18 @@
                                 <field name="membership_date"/>
                             </group>
                         </group>
+                        <notebook>
+                        <page string="Invoice">
+                            <field name="invoice_ids">
+                                <tree string="Invoice">
+                                    <field name="book_id"/>
+                                    <field name="issue_date"/>
+                                    <field name="return_date"/>
+                                    <field name="employee_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                     </sheet>
                 </form>
             </field>
@@ -40,6 +52,9 @@
                     <field name="name"/>
                     <field name="email"/>
                     <field name="membership_date"/>
+                    <field name="address"/>
+                    <field name="phone"/>
+                    <field name="city"/>
                     <field name="id" />
                     <field name="image"/>
                     <templates>
@@ -69,6 +84,15 @@
                                 </t>
                                 <div>
                                     <field name="membership_date"/>
+                                </div>
+                                <div>
+                                    <field name="address"/>
+                                </div>
+                                <div>
+                                    <field name="phone"/>
+                                </div>
+                                <div>
+                                    <field name="city"/>
                                 </div>
                             </div>
                         </t>

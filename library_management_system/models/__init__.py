@@ -3,7 +3,6 @@ from . import books
 from . import authors
 from . import categories
 from . import invoice
-from . import issue_books
 from . import report
 from . import employees
 from . import configuration

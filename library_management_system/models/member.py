@@ -6,6 +6,7 @@ class Members(models.Model):
     _description = 'Library Member'
 
     name = fields.Char(String='Name', required=True)
+    invoice_ids = fields.One2many('library.invoice', 'member_id', string='Invoice')
     email = fields.Char(string='Email', required=True)
     address = fields.Char(string='Address', required=True)
     phone = fields.Char(string='Phone', required=True)

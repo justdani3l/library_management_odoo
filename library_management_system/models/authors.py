@@ -9,4 +9,5 @@ class Authors(models.Model):
     biography = fields.Text(string='Biography', required=True)
     nationality = fields.Char(string='Nationality', required=True)
     image = fields.Binary(string='Image')
+    book_ids = fields.One2many('library.books', 'author_id', string='Books')
 

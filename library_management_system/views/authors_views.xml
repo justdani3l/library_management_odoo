@@ -23,6 +23,18 @@
                                 <field name="nationality"/>
                             </group>
                         </group>
+                        <notebook>
+                        <page string="Books">
+                            <field name="book_ids">
+                                <tree string="Books">
+                                    <field name="book_title"/>
+                                    <field name="production_year"/>
+                                    <field name="rating"/>
+                                    <field name="categories"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                     </sheet>
                 </form>
             </field>
@@ -48,7 +60,7 @@
                     <field name="name"/>
                     <field name="nationality"/>
                     <field name="biography"/>
-                    <field name="id" />
+                    <field name="id"/>
                     <field name="image"/>
                     <templates>
                         <t t-name="kanban-box">
@@ -99,7 +111,7 @@
             </field>
         </record>
 
-        <menuitem name="Authors" id="authors_menu" parent="books_menu" action="authors_act_window"/>
+        <menuitem name="Authors" id="authors_menu" parent="books_menu" action="authors_act_window" sequence="3"/>
 
     </data>
 </odoo>
