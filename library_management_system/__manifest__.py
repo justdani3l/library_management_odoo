@@ -6,7 +6,7 @@
     'category': 'Library',
     'author': 'Author',
     'website': 'Website',
-    'depends': ['base'],
+    'depends': ['base', 'mail', 'calendar', 'sale'],
     'data': [
         'views/member_views.xml',
         'views/books_views.xml',

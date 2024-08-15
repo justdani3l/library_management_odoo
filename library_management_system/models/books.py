@@ -5,7 +5,7 @@ class Books(models.Model):
     _name = 'library.books'
     _description = 'Library Books'
 
-    book_title = fields.Char(string='Book Title', required=True)
+    book = fields.Char(string='Book Title', required=True)
     isbn = fields.Char(string='ISBN', required=True)
     publisher_name = fields.Char(string='Publisher Name', required=True)
     production_year = fields.Text(string='Production Year', required=True)
@@ -16,5 +16,5 @@ class Books(models.Model):
     book_price = fields.Text(string='Book Price', required=True)
     image = fields.Image(string='Image')
     author_id = fields.Many2one(comodel_name='library.authors', string='Author', required=True)
-    categories = fields.Many2one(comodel_name='library.categories', string='Categories', required=True)
+    categories_id = fields.Many2one(comodel_name='library.categories', string='Categories', required=True)
 

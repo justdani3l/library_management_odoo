@@ -27,10 +27,10 @@
                         <page string="Books">
                             <field name="book_ids">
                                 <tree string="Books">
-                                    <field name="book_title"/>
+                                    <field name="book"/>
                                     <field name="production_year"/>
                                     <field name="rating"/>
-                                    <field name="categories"/>
+                                    <field name="categories_id"/>
                                 </tree>
                             </field>
                         </page>

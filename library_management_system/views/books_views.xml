@@ -9,9 +9,9 @@
                     <sheet>
                         <field name="image" widget="image" class="oe_avatar"/>
                         <div class="oe_title">
-                            <label for="book_title"/>
+                            <label for="book"/>
                             <h1>
-                                <field name="book_title" placeholder="Book Title"/>
+                                <field name="book" placeholder="Book Title"/>
                             </h1>
                         </div>
                         <group>
@@ -24,7 +24,7 @@
                             </group>
                             <group>
                                 <field name="availability"/>
-                                <field name="categories"/>
+                                <field name="categories_id"/>
                                 <field name="language"/>
                                 <field name="rating"/>
                                 <field name="book_price"/>
@@ -40,12 +40,12 @@
             <field name="model">library.books</field>
             <field name="arch" type="xml">
                 <tree string="Library Books">
-                    <field name="book_title"/>
+                    <field name="book"/>
                     <field name="isbn"/>
                     <field name="author_id"/>
                     <field name="publisher_name"/>
                     <field name="production_year"/>
-                    <field name="categories"/>
+                    <field name="categories_id"/>
                     <field name="rating"/>
                     <field name="book_price"/>
                 </tree>
@@ -57,25 +57,45 @@
             <field name="model">library.books</field>
             <field name="arch" type="xml">
                 <pivot string="Library Books">
-                    <field name="book_title" type="row"/>
+                    <field name="book" type="row"/>
                     <field name="book_price" type="col"/>
                 </pivot>
             </field>
         </record>
 
+        <record id="books_search_view" model="ir.ui.view">
+            <field name="name">library.books.search</field>
+            <field name="model">library.books</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="book" string="Books" filter_domain="['|',('book','ilike',self),('language','ilike',self)]"/>
+                    <field name="rating"/>
+                    <field name="language"/>
+                    <field name="categories_id"/>
+                    <field name="author_id"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Categories" name="group_by_categories_id"
+                                context="{'group_by':'categories_id'}"/>
+                    </group>
+                    <searchpanel>
+                        <field name="categories_id" icon="fa-users" select="multi" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
 
         <record id="books_kanban_view" model="ir.ui.view">
             <field name="name">library.books.kanban</field>
             <field name="model">library.books</field>
             <field name="arch" type="xml">
                 <kanban class="o_kanban_mobile" sample="1">
-                    <field name="book_title"/>
+                    <field name="book"/>
                     <field name="book_price"/>
                     <field name="author_id"/>
                     <field name="production_year"/>
                     <field name="language"/>
                     <field name="rating"/>
-                    <field name="categories"/>
+                    <field name="categories_id"/>
                     <field name="id"/>
                     <field name="image"/>
                     <templates>
@@ -95,7 +115,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <strong>
-                                            <field name="book_title"/>
+                                            <field name="book"/>
                                         </strong>
                                     </div>
                                 </div>
@@ -116,7 +136,7 @@
                                     <field name="rating"/>
                                 </div>
                                 <div>
-                                    <field name="categories"/>
+                                    <field name="categories_id"/>
                                 </div>
                             </div>
                         </t>

@@ -19,6 +19,18 @@
                                 <field name="description"/>
                             </group>
                         </group>
+                        <notebook>
+                            <page string="Books">
+                                <field name="books_ids">
+                                    <tree string="Books">
+                                        <field name="book"/>
+                                        <field name="production_year"/>
+                                        <field name="language"/>
+                                        <field name="rating"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
@@ -36,7 +48,7 @@
         </record>
 
         <record id="categories_act_window" model="ir.actions.act_window">
-            <field name="name">Library Categories</field>
+            <field name="name">Books Categories</field>
             <field name="res_model">library.categories</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
@@ -46,7 +58,7 @@
             </field>
         </record>
 
-        <menuitem name="Library Categories" id="categories_menu" parent="books_menu" action="categories_act_window" sequence="2"/>
+        <menuitem name="Books Categories" id="categories_menu" parent="books_menu" action="categories_act_window" sequence="2"/>
 
     </data>
 </odoo>

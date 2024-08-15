@@ -28,18 +28,23 @@
                             </group>
                         </group>
                         <notebook>
-                        <page string="Invoice">
-                            <field name="invoice_ids">
-                                <tree string="Invoice">
-                                    <field name="book_id"/>
-                                    <field name="issue_date"/>
-                                    <field name="return_date"/>
-                                    <field name="employee_id"/>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
+                            <page string="Invoice">
+                                <field name="invoice_ids">
+                                    <tree string="Invoice">
+                                        <field name="book_id"/>
+                                        <field name="issue_date"/>
+                                        <field name="return_date"/>
+                                        <field name="employee_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -55,7 +60,8 @@
                     <field name="address"/>
                     <field name="phone"/>
                     <field name="city"/>
-                    <field name="id" />
+                    <field name="id"/>
+                    <field name="invoice_count"/>
                     <field name="image"/>
                     <templates>
                         <t t-name="kanban-box">
@@ -94,6 +100,13 @@
                                 <div>
                                     <field name="city"/>
                                 </div>
+                                <t t-if="record.invoice_count.raw_value > 0">
+                                    <div class="o_kanban_badge" style="color: white; background-color: red;">
+                                        <i class="fa fa-book"></i>
+                                        <span t-esc="record.invoice_count.raw_value"/>
+                                        Issued Books
+                                    </div>
+                                </t>
                             </div>
                         </t>
                     </templates>
@@ -121,7 +134,6 @@
             <field name="res_model">library.member</field>
             <field name="view_mode">kanban,tree,form</field>
         </record>
-
 
 
         <menuitem name="Member" id="member_menu" parent="library_root_menu" action="member_act_window"/>
