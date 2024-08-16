@@ -40,7 +40,7 @@
             <field name="name">library.categories.tree</field>
             <field name="model">library.categories</field>
             <field name="arch" type="xml">
-                <tree string="Library Categories">
+                <tree string="Library Categories" sample="1">
                     <field name="name"/>
                     <field name="description"/>
                 </tree>

@@ -21,6 +21,7 @@
                             </group>
                             <group>
                                 <field name="issue_date"/>
+                                <field name="duration"/>
                                 <field name="return_date"/>
                             </group>
                         </group>

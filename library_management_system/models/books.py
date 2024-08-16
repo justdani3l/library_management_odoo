@@ -4,6 +4,7 @@ from odoo import fields, models, api
 class Books(models.Model):
     _name = 'library.books'
     _description = 'Library Books'
+    _rec_name = 'book'
 
     book = fields.Char(string='Book Title', required=True)
     isbn = fields.Char(string='ISBN', required=True)
@@ -17,4 +18,10 @@ class Books(models.Model):
     image = fields.Image(string='Image')
     author_id = fields.Many2one(comodel_name='library.authors', string='Author', required=True)
     categories_id = fields.Many2one(comodel_name='library.categories', string='Categories', required=True)
-
+    nr_copies = fields.Integer(string='Number of Copies')
+    priority = fields.Selection([
+        ('0', 'Normal'),
+        ('1', 'Low'),
+        ('2', 'High'),
+        ('3', 'Very High')
+    ], string='Priority')
