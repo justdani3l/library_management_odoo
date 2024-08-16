@@ -6,17 +6,18 @@ from odoo import fields, models, api
 class Invoice(models.Model):
     _name = 'library.invoice'
     _description = 'Library Invoice'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'member_id'
 
-    member_id = fields.Many2one(comodel_name='library.member', string='Member', required=True)
-    book_id = fields.Many2one(comodel_name='library.books', string='Book Name', required=True)
-    issue_date = fields.Date(string='Issue Date', default=fields.Date.context_today)
+    member_id = fields.Many2one(comodel_name='library.member', string='Member', required=True, tracking=True)
+    book_id = fields.Many2one(comodel_name='library.books', string='Book Name', required=True, tracking=True)
+    issue_date = fields.Date(string='Issue Date', default=fields.Date.context_today, tracking=True)
     return_date = fields.Date(string='Return Date', required=False, compute="_compute_return_date",
-                              inverse="_inverse_return_date")
-    duration = fields.Integer(string='Duration', default=1)
-    employee_id = fields.Many2one(comodel_name='library.employees', string='Handled by Employee')
+                              inverse="_inverse_return_date", tracking=True)
+    duration = fields.Integer(string='Duration', default=1, tracking=True)
+    employee_id = fields.Many2one(comodel_name='library.employees', string='Handled by Employee', tracking=True)
     payment_status = fields.Selection([('Paid', 'Paid'), ('Progress', 'Progress'), ('Unpaid', 'Unpaid')],
-                                      string='Payment Status', default='Unpaid')
+                                      string='Payment Status', default='Unpaid', tracking=True)
 
     @api.depends('issue_date', 'duration')
     def _compute_return_date(self):
