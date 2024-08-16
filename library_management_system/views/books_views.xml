@@ -129,24 +129,25 @@
                                         </strong>
                                     </div>
                                 </div>
-                                <t t-if="record.book_price.value">
+                                <t t-if="record.author_id.value">
                                     <hr class="mt8 mb8"/>
-                                    <field name="book_price"/>
-                                </t>
-                                <div>
+                                    <b>Author: </b>
                                     <field name="author_id"/>
+                                </t>
+                                <div><b>Category: </b>
+                                    <field name="categories_id"/>
                                 </div>
-                                <div>
+                                <div><b>Production Year: </b>
                                     <field name="production_year"/>
                                 </div>
-                                <div>
+                                <div><b>Language: </b>
                                     <field name="language"/>
                                 </div>
-                                <div>
+                                <div><b>Rating: </b>
                                     <field name="rating"/>
                                 </div>
-                                <div>
-                                    <field name="categories_id"/>
+                                <div><b>Price: </b>
+                                    <field name="book_price"/>
                                 </div>
                             </div>
                         </t>

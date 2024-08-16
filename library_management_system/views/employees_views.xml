@@ -82,17 +82,18 @@
                                         </strong>
                                     </div>
                                 </div>
-                                <t t-if="record.email.value">
+                                <t t-if="record.job_title.value">
                                     <hr class="mt8 mb8"/>
-                                    <field name="email"/>
+                                    <b>Job Title: </b>
+                                    <field name="job_title"/>
                                 </t>
-                                <div>
+                                <div><b>Phone: </b>
                                     <field name="phone"/>
                                 </div>
-                                <div>
-                                    <field name="job_title"/>
+                                <div><b>Email: </b>
+                                    <field name="email"/>
                                 </div>
-                                <div>
+                                <div><b>Hire Date: </b>
                                     <field name="hire_date"/>
                                 </div>
                             </div>

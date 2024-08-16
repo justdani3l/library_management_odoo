@@ -90,12 +90,12 @@
                                 </div>
                                 <t t-if="record.nationality.value">
                                     <hr class="mt8 mb8"/>
-                                    <strong>
-                                        <field name="nationality"/>
+                                    <strong>Nationality:
                                     </strong>
+                                    <field name="nationality"/>
                                 </t>
                                 <br/>
-                                <div>
+                                <div><b>Biography: </b>
                                     <field name="biography"/>
                                 </div>
                             </div>

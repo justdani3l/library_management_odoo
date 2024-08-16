@@ -86,18 +86,19 @@
                                 </div>
                                 <t t-if="record.email.value">
                                     <hr class="mt8 mb8"/>
+                                    <b>Email: </b>
                                     <field name="email"/>
                                 </t>
-                                <div>
-                                    <field name="membership_date"/>
-                                </div>
-                                <div>
-                                    <field name="address"/>
-                                </div>
-                                <div>
+                                <div><b>Phone: </b>
                                     <field name="phone"/>
                                 </div>
-                                <div>
+                                <div><b>Join Date: </b>
+                                    <field name="membership_date"/>
+                                </div>
+                                <div><b>Address: </b>
+                                    <field name="address"/>
+                                </div>
+                                <div><b>City: </b>
                                     <field name="city"/>
                                 </div>
                                 <t t-if="record.invoice_count.raw_value > 0">
