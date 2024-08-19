@@ -50,9 +50,10 @@
             <field name="model">library.authors</field>
             <field name="arch" type="xml">
                 <tree string="Authors">
-                    <field name="name"/>
-                    <field name="nationality"/>
-                    <field name="biography"/>
+                    <field name="name" optional="show"/>
+                    <field name="nationality" optional="show"/>
+                    <field name="biography" optional="show"/>
+                    <field name="book_ids" optional="hide"/>
                 </tree>
             </field>
         </record>

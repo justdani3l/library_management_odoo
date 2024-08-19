@@ -21,7 +21,7 @@
                         </div>
                         <group>
                             <group>
-                                <field name="isbn"/>
+                                <field name="isbn" help="International Standard Book Number"/>
                                 <field name="author_id"/>
                                 <field name="publisher_name"/>
                                 <field name="production_year"/>
@@ -50,14 +50,18 @@
             <field name="model">library.books</field>
             <field name="arch" type="xml">
                 <tree string="Library Books">
-                    <field name="book"/>
-                    <field name="isbn"/>
-                    <field name="author_id"/>
-                    <field name="publisher_name"/>
-                    <field name="production_year"/>
-                    <field name="categories_id"/>
-                    <field name="rating"/>
-                    <field name="book_price"/>
+                    <field name="book" optional="show"/>
+                    <field name="isbn" optional="show"/>
+                    <field name="author_id" optional="show"/>
+                    <field name="publisher_name" optional="show"/>
+                    <field name="production_year" optional="show"/>
+                    <field name="categories_id" optional="show"/>
+                    <field name="rating" optional="show"/>
+                    <field name="book_price" optional="show"/>
+                    <field name="pages" optional="hide"/>
+                    <field name="availability" optional="hide"/>
+                    <field name="language" optional="hide"/>
+                    <field name="nr_copies" optional="hide"/>
                 </tree>
             </field>
         </record>

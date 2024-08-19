@@ -40,11 +40,11 @@
             <field name="model">library.employees</field>
             <field name="arch" type="xml">
                 <tree string="Employees">
-                    <field name="name"/>
-                    <field name="email"/>
-                    <field name="phone"/>
-                    <field name="job_title"/>
-                    <field name="hire_date"/>
+                    <field name="name" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="phone" optional="show"/>
+                    <field name="job_title" optional="show"/>
+                    <field name="hire_date" optional="hide"/>
                 </tree>
             </field>
         </record>

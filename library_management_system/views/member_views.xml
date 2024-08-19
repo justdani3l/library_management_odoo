@@ -120,12 +120,15 @@
             <field name="model">library.member</field>
             <field name="arch" type="xml">
                 <tree string="Library Members">
-                    <field name="name"/>
-                    <field name="email"/>
-                    <field name="phone"/>
-                    <field name="city"/>
-                    <field name="gender"/>
-                    <field name="membership_date"/>
+                    <field name="name" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="address" optional="hide"/>
+                    <field name="phone" optional="show"/>
+                    <field name="city" optional="show"/>
+                    <field name="gender" optional="show"/>
+                    <field name="membership_date" optional="show"/>
+                    <field name="invoice_count" optional="hide"/>
+                    <field name="invoice_ids" optional="hide"/>
                 </tree>
             </field>
         </record>
