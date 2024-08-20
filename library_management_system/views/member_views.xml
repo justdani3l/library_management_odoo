@@ -12,7 +12,7 @@
                         <div class="oe_title">
                             <label for="name"/>
                             <h1>
-                                <field name="name" placeholder="Full Name"/>
+                                <field name="name" default_focus="1" placeholder="Full Name"/>
                             </h1>
                         </div>
                         <group>
@@ -119,7 +119,7 @@
             <field name="name">library.member.tree</field>
             <field name="model">library.member</field>
             <field name="arch" type="xml">
-                <tree string="Library Members">
+                <tree string="Library Members" sample="1" multi_edit="1">
                     <field name="name" optional="show"/>
                     <field name="email" optional="show"/>
                     <field name="address" optional="hide"/>

@@ -16,7 +16,7 @@
                         <div class="oe_title">
                             <label for="book"/>
                             <h1>
-                                <field name="book" placeholder="Book Title"/>
+                                <field name="book" placeholder="Book Title" default_focus="1"/>
                             </h1>
                         </div>
                         <group>
@@ -28,7 +28,7 @@
                                 <field name="pages"/>
                             </group>
                             <group>
-                                <field name="availability"/>
+                                <field name="availability" widget="boolean_toggle"/>
                                 <field name="categories_id"/>
                                 <field name="language"/>
                                 <field name="rating"/>
@@ -49,7 +49,7 @@
             <field name="name">library.books.tree</field>
             <field name="model">library.books</field>
             <field name="arch" type="xml">
-                <tree string="Library Books">
+                <tree string="Library Books" sample="1" multi_edit="1">
                     <field name="book" optional="show"/>
                     <field name="isbn" optional="show"/>
                     <field name="author_id" optional="show"/>
@@ -70,7 +70,7 @@
             <field name="name">library.books.pivot</field>
             <field name="model">library.books</field>
             <field name="arch" type="xml">
-                <pivot string="Library Books">
+                <pivot string="Library Books" sample="1">
                     <field name="book" type="row"/>
                     <field name="book_price" type="col"/>
                 </pivot>

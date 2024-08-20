@@ -33,7 +33,7 @@
             <field name="name">library.configuration.tree</field>
             <field name="model">library.configuration</field>
             <field name="arch" type="xml">
-                <tree string="Configuration">
+                <tree string="Configuration" sample="1">
                     <field name="config_name"/>
                     <field name="config_value"/>
                 </tree>

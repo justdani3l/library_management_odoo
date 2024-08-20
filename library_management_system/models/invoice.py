@@ -16,8 +16,8 @@ class Invoice(models.Model):
                               inverse="_inverse_return_date", tracking=True)
     duration = fields.Integer(string='Duration', default=1, tracking=True)
     employee_id = fields.Many2one(comodel_name='library.employees', string='Handled by Employee', tracking=True)
-    payment_status = fields.Selection([('Paid', 'Paid'), ('Progress', 'Progress'), ('Unpaid', 'Unpaid')],
-                                      string='Payment Status', default='Unpaid', tracking=True)
+    state = fields.Selection([('draft', 'Draft'), ('running', 'Running'), ('delayed', 'Delayed'), ('ended', 'Ended')],
+                             string='Status', default='draft', tracking=True)
 
     @api.depends('issue_date', 'duration')
     def _compute_return_date(self):
@@ -43,3 +43,19 @@ class Invoice(models.Model):
             self.return_date = fields.Date.to_string(fields.Date.from_string(self.issue_date) + duration)
         else:
             self.return_date = False
+
+    def action_running(self):
+        for rec in self:
+            rec.state = 'running'
+
+    def action_delayed(self):
+        for rec in self:
+            rec.state = 'delayed'
+
+    def action_ended(self):
+        for rec in self:
+            rec.state = 'ended'
+
+    def action_draft(self):
+        for rec in self:
+            rec.state = 'draft'

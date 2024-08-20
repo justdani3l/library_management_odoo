@@ -31,7 +31,7 @@
             <field name="name">library.report.tree</field>
             <field name="model">library.report</field>
             <field name="arch" type="xml">
-                <tree string="Report">
+                <tree string="Report" sample="1">
                     <field name="employee_id"/>
                     <field name="report_date"/>
                 </tree>
@@ -42,7 +42,7 @@
             <field name="name">library.report.graph</field>
             <field name="model">library.report</field>
             <field name="arch" type="xml">
-                <graph string="Report">
+                <graph string="Report" sample="1">
                     <field name="employee_id"/>
                     <field name="report_date" type="measure"/>
                 </graph>
@@ -53,7 +53,7 @@
             <field name="name">library.report.pivot</field>
             <field name="model">library.report</field>
             <field name="arch" type="xml">
-                <pivot string="Report">
+                <pivot string="Report" sample="1">
                     <field name="employee_id" type="row"/>
                     <field name="report_date" type="measure"/>
                 </pivot>

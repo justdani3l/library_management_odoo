@@ -11,7 +11,7 @@
                         <div class="oe_title">
                             <label for="name"/>
                             <h1>
-                                <field name="name" placeholder="Name"/>
+                                <field name="name" placeholder="Name" default_focus="1"/>
                             </h1>
                         </div>
                         <group>
@@ -45,7 +45,7 @@
             <field name="name">library.categories.tree</field>
             <field name="model">library.categories</field>
             <field name="arch" type="xml">
-                <tree string="Library Categories" sample="1">
+                <tree string="Library Categories" sample="1" multi_edit="1">
                     <field name="name" optional="show"/>
                     <field name="description" optional="show"/>
                 </tree>

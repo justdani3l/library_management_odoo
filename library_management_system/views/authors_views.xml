@@ -12,7 +12,7 @@
                         <div class="oe_title">
                             <label for="name"/>
                             <h1>
-                                <field name="name" placeholder="Name"/>
+                                <field name="name" placeholder="Name" default_focus="1"/>
                             </h1>
                         </div>
                         <group>
@@ -49,7 +49,7 @@
             <field name="name">library.authors.tree</field>
             <field name="model">library.authors</field>
             <field name="arch" type="xml">
-                <tree string="Authors">
+                <tree string="Authors" sample="1" multi_edit="1">
                     <field name="name" optional="show"/>
                     <field name="nationality" optional="show"/>
                     <field name="biography" optional="show"/>
