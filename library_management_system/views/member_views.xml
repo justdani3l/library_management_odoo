@@ -25,6 +25,7 @@
                                 <field name="address"/>
                                 <field name="gender"/>
                                 <field name="membership_date"/>
+                                <field name="ref"/>
                             </group>
                         </group>
                         <notebook>
@@ -120,6 +121,7 @@
             <field name="model">library.member</field>
             <field name="arch" type="xml">
                 <tree string="Library Members" sample="1" multi_edit="1">
+                    <field name="ref" optional="show"/>
                     <field name="name" optional="show"/>
                     <field name="email" optional="show"/>
                     <field name="address" optional="hide"/>

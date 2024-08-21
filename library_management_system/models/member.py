@@ -16,11 +16,19 @@ class Members(models.Model):
     image = fields.Image(string='Image', tracking=True)
     membership_date = fields.Date(string='Membership Date', required=True, tracking=True)
     invoice_count = fields.Integer(string='Invoice Count', compute='_compute_invoice_count')
+    ref = fields.Char(string='Reference', tracking=True)
+
+    @api.model
+    def create(self, vals):       #automatically generates a unique reference for new invoices
+        vals['ref'] = self.env['ir.sequence'].next_by_code('library.member')
+        return super(Members, self).create(vals)
+
+    def write(self, vals):       #ensures that the ref field is populated with a unique reference if it’s missing during an update
+        if not self.ref and not vals.get('ref'):
+            vals['ref'] = self.env['ir.sequence'].next_by_code('library.member')
+        return super(Members, self).write(vals)
 
     @api.depends('invoice_ids')
     def _compute_invoice_count(self):
         for member in self:
             member.invoice_count = len(member.invoice_ids)
-
-
-

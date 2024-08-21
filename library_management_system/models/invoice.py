@@ -18,6 +18,17 @@ class Invoice(models.Model):
     employee_id = fields.Many2one(comodel_name='library.employees', string='Handled by Employee', tracking=True)
     state = fields.Selection([('draft', 'Draft'), ('running', 'Running'), ('delayed', 'Delayed'), ('ended', 'Ended')],
                              string='Status', default='draft', tracking=True)
+    ref = fields.Char(string='Reference', tracking=True)
+
+    @api.model
+    def create(self, vals):    #automatically generates a unique reference for new invoices
+        vals['ref'] = self.env['ir.sequence'].next_by_code('library.invoice')
+        return super(Invoice, self).create(vals)
+
+    def write(self, vals):      #ensures that the ref field is populated with a unique reference if it’s missing during an update
+        if not self.ref and not vals.get('ref'):
+            vals['ref'] = self.env['ir.sequence'].next_by_code('library.invoice')
+        return super(Invoice, self).write(vals)
 
     @api.depends('issue_date', 'duration')
     def _compute_return_date(self):

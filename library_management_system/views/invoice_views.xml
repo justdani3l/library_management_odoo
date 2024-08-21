@@ -30,6 +30,7 @@
                             <group>
                                 <field name="book_id"/>
                                 <field name="employee_id" widget="many2one_avatar"/>
+                                <field name="ref"/>
                             </group>
                             <group>
                                 <field name="issue_date"/>
@@ -53,6 +54,7 @@
             <field name="arch" type="xml">
                 <tree string="Invoice" sample="1" multi_edit="1" decoration-success="state == 'ended'"
                       decoration-danger="state == 'delayed'" decoration-warning="state == 'running'">
+                    <field name="ref" optional="show"/>
                     <field name="member_id" optional="show"/>
                     <field name="book_id" optional="show"/>
                     <field name="employee_id" widget="many2one_avatar_user" optional="show"/>
