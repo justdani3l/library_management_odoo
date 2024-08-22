@@ -10,3 +10,7 @@ class Categories(models.Model):
     description = fields.Text(string='Description', required=True, tracking=True)
     books_ids = fields.One2many('library.books', 'categories_id', string="Books", tracking=True)
 
+    _sql_constraints = [
+        ('uniq_name', 'unique(name)', 'A book category name must be unique.'),
+    ]
+

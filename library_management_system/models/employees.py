@@ -1,4 +1,5 @@
 from odoo import fields, models, api
+from odoo.exceptions import ValidationError
 
 
 class Employees(models.Model):
@@ -12,4 +13,10 @@ class Employees(models.Model):
     job_title = fields.Char(string='Job Title', required=True, tracking=True)
     hire_date = fields.Date(string='Hire Date', required=True, tracking=True)
     image = fields.Image(string='Image', tracking=True)
+
+    @api.constrains('hire_date')
+    def _check_hire_date(self):
+        for rec in self:
+            if rec.hire_date and rec.hire_date > fields.Date.today():
+                raise ValidationError("The entered date of hire date isn't acceptable")
 

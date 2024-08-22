@@ -1,4 +1,5 @@
 from odoo import fields, models, api
+from odoo.exceptions import ValidationError
 
 
 class Members(models.Model):
@@ -14,16 +15,23 @@ class Members(models.Model):
     city = fields.Char(string='City', required=True, tracking=True)
     gender = fields.Selection(string='Gender', selection=[('Male', 'Male'), ('Female', 'Female')], tracking=True)
     image = fields.Image(string='Image', tracking=True)
-    membership_date = fields.Date(string='Membership Date', required=True, tracking=True)
+    membership_date = fields.Date(string='Membership Date', default=fields.Date.context_today, required=True, tracking=True)
     invoice_count = fields.Integer(string='Invoice Count', compute='_compute_invoice_count')
     ref = fields.Char(string='Reference', tracking=True)
 
+    @api.constrains('membership_date')
+    def _check_membership_date(self):
+        for rec in self:
+            if rec.membership_date and rec.membership_date > fields.Date.today():
+                raise ValidationError("The entered date of membership isn't acceptable")
+
     @api.model
-    def create(self, vals):       #automatically generates a unique reference for new invoices
+    def create(self, vals):  # automatically generates a unique reference for new invoices
         vals['ref'] = self.env['ir.sequence'].next_by_code('library.member')
         return super(Members, self).create(vals)
 
-    def write(self, vals):       #ensures that the ref field is populated with a unique reference if it’s missing during an update
+    def write(self,
+              vals):  # ensures that the ref field is populated with a unique reference if it’s missing during an update
         if not self.ref and not vals.get('ref'):
             vals['ref'] = self.env['ir.sequence'].next_by_code('library.member')
         return super(Members, self).write(vals)
@@ -32,3 +40,6 @@ class Members(models.Model):
     def _compute_invoice_count(self):
         for member in self:
             member.invoice_count = len(member.invoice_ids)
+
+    def name_get(self):
+        return [(record.id, "[%s] %s" % (record.ref, record.name)) for record in self]

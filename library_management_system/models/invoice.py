@@ -1,6 +1,6 @@
 from datetime import timedelta
-
 from odoo import fields, models, api
+from odoo.exceptions import ValidationError
 
 
 class Invoice(models.Model):
@@ -20,12 +20,19 @@ class Invoice(models.Model):
                              string='Status', default='draft', tracking=True)
     ref = fields.Char(string='Reference', tracking=True)
 
+    @api.constrains('issue_date')
+    def _check_issue_date(self):
+        for rec in self:
+            if rec.issue_date and rec.issue_date > fields.Date.today():
+                raise ValidationError("The entered date of issue date isn't acceptable")
+
     @api.model
-    def create(self, vals):    #automatically generates a unique reference for new invoices
+    def create(self, vals):  # automatically generates a unique reference for new invoices
         vals['ref'] = self.env['ir.sequence'].next_by_code('library.invoice')
         return super(Invoice, self).create(vals)
 
-    def write(self, vals):      #ensures that the ref field is populated with a unique reference if it’s missing during an update
+    def write(self,
+              vals):  # ensures that the ref field is populated with a unique reference if it’s missing during an update
         if not self.ref and not vals.get('ref'):
             vals['ref'] = self.env['ir.sequence'].next_by_code('library.invoice')
         return super(Invoice, self).write(vals)
@@ -61,6 +68,8 @@ class Invoice(models.Model):
 
     def action_delayed(self):
         for rec in self:
+            if rec.return_date and fields.Date.today() < rec.return_date:
+                raise ValidationError("You cannot delay the book because the return date has not passed yet!")
             rec.state = 'delayed'
 
     def action_ended(self):
@@ -70,3 +79,6 @@ class Invoice(models.Model):
     def action_draft(self):
         for rec in self:
             rec.state = 'draft'
+
+
+
