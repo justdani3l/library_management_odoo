@@ -31,8 +31,12 @@ class Invoice(models.Model):
         vals['ref'] = self.env['ir.sequence'].next_by_code('library.invoice')
         return super(Invoice, self).create(vals)
 
-    def write(self,
-              vals):  # ensures that the ref field is populated with a unique reference if it’s missing during an update
+    def unlink(self):
+        if self.state != 'draft':
+            raise ValidationError('You can delete Invoice only in draft status!!')
+        return super(Invoice, self).unlink()
+
+    def write(self, vals):  # ensures that the ref field is populated with a unique reference if it’s missing during an update
         if not self.ref and not vals.get('ref'):
             vals['ref'] = self.env['ir.sequence'].next_by_code('library.invoice')
         return super(Invoice, self).write(vals)

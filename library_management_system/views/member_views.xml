@@ -10,7 +10,9 @@
                     <sheet>
                         <field name="image" widget="image" class="oe_avatar"/>
                         <div class="oe_title">
-                            <label for="name"/>
+                            <h4>
+                                <field name="ref" readonly="1"/>
+                            </h4>
                             <h1>
                                 <field name="name" default_focus="1" placeholder="Full Name"/>
                             </h1>
@@ -25,7 +27,6 @@
                                 <field name="address"/>
                                 <field name="gender"/>
                                 <field name="membership_date"/>
-                                <field name="ref"/>
                             </group>
                         </group>
                         <notebook>
@@ -47,6 +48,18 @@
                         <field name="message_ids"/>
                     </div>
                 </form>
+            </field>
+        </record>
+
+        <record id="member_search_view" model="ir.ui.view">
+            <field name="name">library.member.search</field>
+            <field name="model">library.member</field>
+            <field name="arch" type="xml">
+                <search>
+                    <searchpanel>
+                        <field name="gender" icon="fa-users" select="multi" enable_counters="1"/>
+                    </searchpanel>
+                </search>
             </field>
         </record>
 

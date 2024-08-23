@@ -21,16 +21,17 @@
                     </header>
                     <sheet>
                         <div class="oe_title">
-                            <label for="member_id"/>
+                            <h4>
+                                <field name="ref" readonly="1"/>
+                            </h4>
                             <h1>
-                                <field name="member_id" placeholder="Choose" default_focus="1"/>
+                                <field name="member_id" placeholder="Choose Member" default_focus="1"/>
                             </h1>
                         </div>
                         <group>
                             <group>
-                                <field name="book_id"/>
+                                <field name="book_id" placeholder="Choose Book"/>
                                 <field name="employee_id" widget="many2one_avatar"/>
-                                <field name="ref"/>
                             </group>
                             <group>
                                 <field name="issue_date"/>
