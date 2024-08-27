@@ -6,6 +6,7 @@ class Members(models.Model):
     _name = 'library.member'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Library Member'
+    _order = 'id desc'
 
     name = fields.Char(String='Name', required=True, tracking=True)
     invoice_ids = fields.One2many('library.invoice', 'member_id', string='Invoice', tracking=True)
@@ -36,10 +37,10 @@ class Members(models.Model):
             vals['ref'] = self.env['ir.sequence'].next_by_code('library.member')
         return super(Members, self).write(vals)
 
-    @api.depends('invoice_ids')
+    @api.depends('invoice_ids.state')
     def _compute_invoice_count(self):
         for member in self:
-            member.invoice_count = len(member.invoice_ids)
+            member.invoice_count = len(member.invoice_ids.filtered(lambda inv: inv.state != 'ended'))
 
     def name_get(self):
         return [(record.id, "[%s] %s" % (record.ref, record.name)) for record in self]

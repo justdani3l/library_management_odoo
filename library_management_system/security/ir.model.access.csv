@@ -1,2 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access.library.authors,
+library_authors,library.authors,library.model_library_authors,base.group_user,1,1,1,1
+library_books,library.books,library.model_library_books,base.group_user,1,1,1,1
+library_categories,library.categories,library.model_library_categories,base.group_user,1,1,1,1
+library_employees,library.employees,library.model_library_employees,base.group_user,1,1,1,1
+library_invoice,library.invoice,library.model_library_invoice,base.group_user,1,1,1,1
+library_member,library.member,library.model_library_member,base.group_user,1,1,1,1

@@ -39,6 +39,11 @@
                                 <field name="return_date"/>
                             </group>
                         </group>
+                        <notebook>
+                            <page string="Progress" name="progress">
+                                <field name="progress" widget="percentpie"/>
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" groups="base.group_user"/>
@@ -69,26 +74,27 @@
                            decoration-danger="state == 'delayed'"
                            decoration-warning="state == 'running'"
                            widget="badge"/>
+                    <field name="progress" optional="show" widget="progressbar"/>
                 </tree>
             </field>
         </record>
 
         <record id="invoice_view_activity" model="ir.ui.view">
-        <field name="name">library.invoice.activity</field>
-        <field name="model">library.invoice</field>
-        <field name="arch" type="xml">
-            <activity string="Invoice">
-                <field name="member_id"/>
-                <templates>
-                    <div t-name="activity-box">
-                        <div class="ms-2">
-                            <field name="member_id" display="full" class="o_text_block"/>
+            <field name="name">library.invoice.activity</field>
+            <field name="model">library.invoice</field>
+            <field name="arch" type="xml">
+                <activity string="Invoice">
+                    <field name="member_id"/>
+                    <templates>
+                        <div t-name="activity-box">
+                            <div class="ms-2">
+                                <field name="member_id" display="full" class="o_text_block"/>
+                            </div>
                         </div>
-                    </div>
-                </templates>
-            </activity>
-        </field>
-    </record>
+                    </templates>
+                </activity>
+            </field>
+        </record>
 
         <record id="invoice_calendar_view" model="ir.ui.view">
             <field name="name">library.invoice.calendar</field>

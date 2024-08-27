@@ -19,8 +19,8 @@
                         </div>
                         <group>
                             <group>
-                                <field name="email"/>
-                                <field name="phone"/>
+                                <field name="email" widget="email"/>
+                                <field name="phone" widget="phone"/>
                                 <field name="city"/>
                             </group>
                             <group>
@@ -33,10 +33,15 @@
                             <page string="Invoice">
                                 <field name="invoice_ids">
                                     <tree string="Invoice">
-                                        <field name="book_id"/>
-                                        <field name="issue_date"/>
-                                        <field name="return_date"/>
-                                        <field name="employee_id"/>
+                                        <field name="book_id" widget="badge"/>
+                                        <field name="issue_date" widget="badge"/>
+                                        <field name="return_date" widget="badge"/>
+                                        <field name="employee_id" widget="badge"/>
+                                        <field name="state" decoration-success="state == 'ended'"
+                                               decoration-info="state == 'draft'"
+                                               decoration-danger="state == 'delayed'"
+                                               decoration-warning="state == 'running'"
+                                               widget="badge"/>
                                     </tree>
                                 </field>
                             </page>
@@ -100,26 +105,30 @@
                                 </div>
                                 <t t-if="record.email.value">
                                     <hr class="mt8 mb8"/>
-                                    <b>Email: </b>
+                                    <b>Email:</b>
                                     <field name="email"/>
                                 </t>
-                                <div><b>Phone: </b>
+                                <div>
+                                    <b>Phone:</b>
                                     <field name="phone"/>
                                 </div>
-                                <div><b>Join Date: </b>
+                                <div>
+                                    <b>Join Date:</b>
                                     <field name="membership_date"/>
                                 </div>
-                                <div><b>Address: </b>
+                                <div>
+                                    <b>Address:</b>
                                     <field name="address"/>
                                 </div>
-                                <div><b>City: </b>
+                                <div>
+                                    <b>City:</b>
                                     <field name="city"/>
                                 </div>
                                 <t t-if="record.invoice_count.raw_value > 0">
                                     <div class="o_kanban_badge" style="color: white; background-color: red;">
                                         <i class="fa fa-book"></i>
                                         <span t-esc="record.invoice_count.raw_value"/>
-                                        Issued Books
+                                        Borrowed Books
                                     </div>
                                 </t>
                             </div>

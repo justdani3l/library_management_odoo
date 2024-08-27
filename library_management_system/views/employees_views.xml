@@ -17,8 +17,8 @@
                         </div>
                         <group>
                             <group>
-                                <field name="email"/>
-                                <field name="phone"/>
+                                <field name="email" widget="email"/>
+                                <field name="phone" widget="phone"/>
                             </group>
                             <group>
                                 <field name="job_title"/>

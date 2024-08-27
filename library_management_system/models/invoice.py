@@ -8,6 +8,7 @@ class Invoice(models.Model):
     _description = 'Library Invoice'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'member_id'
+    _order = 'id desc'
 
     member_id = fields.Many2one(comodel_name='library.member', string='Member', required=True, tracking=True)
     book_id = fields.Many2one(comodel_name='library.books', string='Book Name', required=True, tracking=True)
@@ -19,6 +20,7 @@ class Invoice(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('running', 'Running'), ('delayed', 'Delayed'), ('ended', 'Ended')],
                              string='Status', default='draft', tracking=True)
     ref = fields.Char(string='Reference', tracking=True)
+    progress = fields.Integer(string='Progress', compute="_compute_progress")
 
     @api.constrains('issue_date')
     def _check_issue_date(self):
@@ -27,19 +29,28 @@ class Invoice(models.Model):
                 raise ValidationError("The entered date of issue date isn't acceptable")
 
     @api.model
-    def create(self, vals):  # automatically generates a unique reference for new invoices
+    def create(self, vals):
+        # Automatically generates a unique reference for new invoices
         vals['ref'] = self.env['ir.sequence'].next_by_code('library.invoice')
-        return super(Invoice, self).create(vals)
+        invoice = super(Invoice, self).create(vals)
+        invoice._update_book_copies(-1)  # Decrease book copies when creating an invoice
+        return invoice
 
     def unlink(self):
         if self.state != 'draft':
             raise ValidationError('You can delete Invoice only in draft status!!')
+        self._update_book_copies(1)  # Restore book copies if invoice is deleted
         return super(Invoice, self).unlink()
 
-    def write(self, vals):  # ensures that the ref field is populated with a unique reference if it’s missing during an update
-        if not self.ref and not vals.get('ref'):
-            vals['ref'] = self.env['ir.sequence'].next_by_code('library.invoice')
-        return super(Invoice, self).write(vals)
+    def write(self, vals):
+        old_book_id = self.book_id.id
+        result = super(Invoice, self).write(vals)
+        if 'book_id' in vals:
+            # Restore the old book's copies
+            self.env['library.books'].browse(old_book_id)._update_nr_copies(1)
+            # Decrease the new book's copies
+            self._update_book_copies(-1)
+        return result
 
     @api.depends('issue_date', 'duration')
     def _compute_return_date(self):
@@ -79,10 +90,34 @@ class Invoice(models.Model):
     def action_ended(self):
         for rec in self:
             rec.state = 'ended'
+            rec.member_id._compute_invoice_count()
+
+    def _return_book(self):
+        """Handles the return of the borrowed book."""
+        self.ensure_one()
+        book = self.book_id
+        if book:
+            book.nr_copies += 1
+            book.availability = book.nr_copies > 0
 
     def action_draft(self):
         for rec in self:
             rec.state = 'draft'
 
+    def _update_book_copies(self, quantity):
+        """Update the number of copies available for the book."""
+        if self.book_id:
+            self.book_id.sudo()._update_nr_copies(quantity)
 
-
+    @api.depends("state")
+    def _compute_progress(self):
+        for rec in self:
+            if rec.state == 'draft':
+                progress = 25
+            elif rec.state == 'running':
+                progress = 50
+            elif rec.state == 'ended':
+                progress = 100
+            else:
+                progress = 0
+            rec.progress = progress
