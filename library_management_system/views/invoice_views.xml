@@ -41,7 +41,8 @@
                         </group>
                         <notebook>
                             <page string="Progress" name="progress">
-                                <field name="progress" widget="percentpie"/>
+                                <field name="progress" widget="percentpie"
+                                       options="{'style': 'width:120px; height:120px;'}"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -100,9 +101,10 @@
             <field name="name">library.invoice.calendar</field>
             <field name="model">library.invoice</field>
             <field name="arch" type="xml">
-                <calendar string="Invoice" date_start="issue_date">
-                    <field name="member_id"/>
-                    <field name="return_date" widget="monetary"/>
+                <calendar string="Invoice" date_start="return_date" mode="month" color="member_id" quick_create="0"
+                          event_limit="5" event_open_popup="true">
+                    <field name="member_id" filters="1"/>
+                    <field name="state" filters="1" invisible="1"/>
                 </calendar>
             </field>
         </record>

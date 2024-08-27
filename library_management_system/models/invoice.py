@@ -1,6 +1,7 @@
 from datetime import timedelta
 from odoo import fields, models, api
 from odoo.exceptions import ValidationError
+import random
 
 
 class Invoice(models.Model):
@@ -113,9 +114,9 @@ class Invoice(models.Model):
     def _compute_progress(self):
         for rec in self:
             if rec.state == 'draft':
-                progress = 25
+                progress = random.randrange(0, 25)
             elif rec.state == 'running':
-                progress = 50
+                progress = random.randrange(25, 80)
             elif rec.state == 'ended':
                 progress = 100
             else:
