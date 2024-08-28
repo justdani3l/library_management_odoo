@@ -16,7 +16,8 @@ class Members(models.Model):
     city = fields.Char(string='City', required=True, tracking=True)
     gender = fields.Selection(string='Gender', selection=[('Male', 'Male'), ('Female', 'Female')], tracking=True)
     image = fields.Image(string='Image', tracking=True)
-    membership_date = fields.Date(string='Membership Date', default=fields.Date.context_today, required=True, tracking=True)
+    membership_date = fields.Date(string='Membership Date', default=fields.Date.context_today, required=True,
+                                  tracking=True)
     invoice_count = fields.Integer(string='Invoice Count', compute='_compute_invoice_count')
     ref = fields.Char(string='Reference', tracking=True)
 
@@ -44,3 +45,5 @@ class Members(models.Model):
 
     def name_get(self):
         return [(record.id, "[%s] %s" % (record.ref, record.name)) for record in self]
+
+

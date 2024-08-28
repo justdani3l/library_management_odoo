@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <form string="Invoice">
                     <header>
-                        <button name="action_running" string="Running" type="object" invisible="state != 'draft'"
+                        <button name="action_running" string="Confirm Booking" type="object" invisible="state != 'draft'"
                                 class="oe_highlight" data-hotkey="f"/>
                         <button name="action_delayed" string="Delayed" type="object" invisible="state != 'running'"
                                 class="oe_highlight" data-hotkey="x"/>
@@ -61,7 +61,7 @@
             <field name="arch" type="xml">
                 <tree string="Invoice" sample="1" multi_edit="1" decoration-success="state == 'ended'"
                       decoration-danger="state == 'delayed'" decoration-warning="state == 'running'">
-                    <field name="ref" optional="show"/>
+                    <field name="ref" optional="show" decoration-bf="1"/>
                     <field name="member_id" optional="show"/>
                     <field name="book_id" optional="show"/>
                     <field name="employee_id" widget="many2one_avatar_user" optional="show"/>

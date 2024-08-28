@@ -8,6 +8,11 @@
             <field name="arch" type="xml">
                 <form string="Library Members">
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" icon="fa-book">
+                                <field string="Borrows" name="invoice_count" widget="statinfo"/>
+                            </button>
+                        </div>
                         <field name="image" widget="image" class="oe_avatar"/>
                         <div class="oe_title">
                             <h4>
@@ -143,13 +148,13 @@
             <field name="model">library.member</field>
             <field name="arch" type="xml">
                 <tree string="Library Members" sample="1" multi_edit="1">
-                    <field name="ref" optional="show"/>
+                    <field name="ref" optional="show" decoration-bf="1"/>
                     <field name="name" optional="show"/>
                     <field name="email" optional="show"/>
                     <field name="address" optional="hide"/>
                     <field name="phone" optional="show"/>
                     <field name="city" optional="show"/>
-                    <field name="gender" optional="show"/>
+                    <field name="gender" optional="show" decoration-success="gender=='Female'" decoration-bf="1" decoration-it="1"/>
                     <field name="membership_date" optional="show"/>
                     <field name="invoice_count" optional="hide"/>
                     <field name="invoice_ids" optional="hide"/>

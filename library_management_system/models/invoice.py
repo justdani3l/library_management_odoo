@@ -18,7 +18,7 @@ class Invoice(models.Model):
                               inverse="_inverse_return_date", tracking=True)
     duration = fields.Integer(string='Duration', default=1, tracking=True)
     employee_id = fields.Many2one(comodel_name='library.employees', string='Handled by Employee', tracking=True)
-    state = fields.Selection([('draft', 'Draft'), ('running', 'Running'), ('delayed', 'Delayed'), ('ended', 'Ended')],
+    state = fields.Selection([('draft', 'Draft'), ('running', 'Confirm Booking'), ('delayed', 'Delayed'), ('ended', 'Ended')],
                              string='Status', default='draft', tracking=True)
     ref = fields.Char(string='Reference', tracking=True)
     progress = fields.Integer(string='Progress', compute="_compute_progress")
@@ -92,6 +92,13 @@ class Invoice(models.Model):
         for rec in self:
             rec.state = 'ended'
             rec.member_id._compute_invoice_count()
+        return {
+            'effect': {
+                'fadeout': 'slow',
+                'message': 'Ended',
+                'type': 'rainbow_man',
+            }
+        }
 
     def _return_book(self):
         """Handles the return of the borrowed book."""
