@@ -129,3 +129,14 @@ class Invoice(models.Model):
             else:
                 progress = 0
             rec.progress = progress
+
+    def action_share_whatsapp(self):
+        if not self.member_id.phone:
+            raise ValidationError("Missing phone number in member record")
+        message = 'Hi *%s*, your borrow day has ended' % (self.member_id.name, self.start_time)
+        whatsapp_api_url = 'https://api.whatsapp.com/send?phone=%s&text=%s' % (self.member_id.phone, message)
+        return {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': whatsapp_api_url
+        }

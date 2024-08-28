@@ -18,6 +18,9 @@
                                 class="oe_highlight" data-hotkey="v"/>
                         <field name="state" widget="statusbar" nolabel="1"
                                statusbar_visible="draft,running,delayed"/>
+                        <button name="action_share_whatsapp" string="Message Member" class="oe_highlight"
+                            data-hotkey="w" icon="fa-whatsapp"
+                            type="object"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
