@@ -18,8 +18,9 @@ class Invoice(models.Model):
                               inverse="_inverse_return_date", tracking=True)
     duration = fields.Integer(string='Duration', default=1, tracking=True)
     employee_id = fields.Many2one(comodel_name='library.employees', string='Handled by Employee', tracking=True)
-    state = fields.Selection([('draft', 'Draft'), ('running', 'Confirm Booking'), ('delayed', 'Delayed'), ('ended', 'Ended')],
-                             string='Status', default='draft', tracking=True)
+    state = fields.Selection(
+        [('draft', 'Draft'), ('running', 'Confirm Booking'), ('delayed', 'Delayed'), ('ended', 'Ended')],
+        string='Status', default='draft', tracking=True)
     ref = fields.Char(string='Reference', tracking=True)
     progress = fields.Integer(string='Progress', compute="_compute_progress")
 
@@ -133,8 +134,9 @@ class Invoice(models.Model):
     def action_share_whatsapp(self):
         if not self.member_id.phone:
             raise ValidationError("Missing phone number in member record")
-        message = 'Hi *%s*, your borrow day has ended' % (self.member_id.name, self.start_time)
+        message = 'Hi *%s*, your landing time for *%s* has ended!!' % (self.member_id.name, self.book_id.book)
         whatsapp_api_url = 'https://api.whatsapp.com/send?phone=%s&text=%s' % (self.member_id.phone, message)
+        self.message_post(body=message, subject="Whatsapp Message")
         return {
             'type': 'ir.actions.act_url',
             'target': 'new',
