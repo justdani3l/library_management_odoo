@@ -18,8 +18,6 @@
         'views/categories_views.xml',
         'views/invoice_views.xml',
         'views/employees_views.xml',
-        'views/report_views.xml',
-        'views/configuration_views.xml',
         'views/menu.xml',
     ],
 

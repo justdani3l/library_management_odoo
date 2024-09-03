@@ -83,6 +83,18 @@
             </field>
         </record>
 
+        <record id="invoice_search_view" model="ir.ui.view">
+            <field name="name">library.invoice.search</field>
+            <field name="model">library.invoice</field>
+            <field name="arch" type="xml">
+                <search>
+                    <searchpanel>
+                        <field name="state" icon="fa-list" select="multi" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
         <record id="invoice_view_activity" model="ir.ui.view">
             <field name="name">library.invoice.activity</field>
             <field name="model">library.invoice</field>
@@ -117,8 +129,8 @@
             <field name="model">library.invoice</field>
             <field name="arch" type="xml">
                 <pivot string="Invoice" sample="1">
-                    <field name="member_id" type="row"/>
-                    <field name="return_date" type="measure"/>
+                    <field name="state" type="row"/>
+                    <field name="member_id" type="col"/>
                 </pivot>
             </field>
         </record>

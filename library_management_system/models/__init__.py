@@ -5,4 +5,3 @@ from . import categories
 from . import invoice
 from . import report
 from . import employees
-from . import configuration
