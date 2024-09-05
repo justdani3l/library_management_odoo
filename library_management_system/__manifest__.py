@@ -8,10 +8,13 @@
     'website': 'Website',
     'depends': ['base', 'mail', 'calendar', 'sale'],
     'data': [
+
         'data/sequence_member_data.xml',
         'data/sequence_invoice_data.xml',
+
         'report/library_invoice_templates.xml',
-        'report/ir_actions_report.xml',
+        'report/report.xml',
+
         'views/member_views.xml',
         'views/books_views.xml',
         'views/authors_views.xml',
@@ -25,3 +28,10 @@
     'auto_install': False,
     'application': True,
 }
+
+
+
+
+
+
+

@@ -45,5 +45,3 @@ class Members(models.Model):
 
     def name_get(self):
         return [(record.id, "[%s] %s" % (record.ref, record.name)) for record in self]
-
-
