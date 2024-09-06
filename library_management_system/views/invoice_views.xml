@@ -11,6 +11,8 @@
                         <button name="action_share_whatsapp" string="Message Member" class="oe_highlight"
                                 data-hotkey="w" icon="fa-whatsapp"
                                 type="object" invisible="state != 'delayed'"/>
+                        <button name="action_send_email" string="Email Member" class="oe_highlight"
+                                type="object" invisible="state != 'ended'"/>
                         <button name="action_running" string="Confirm Booking" type="object" invisible="state != 'draft'"
                                 class="oe_highlight" data-hotkey="f"/>
                         <button name="action_delayed" string="Delayed" type="object" invisible="state != 'running'"

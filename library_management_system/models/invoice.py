@@ -142,3 +142,8 @@ class Invoice(models.Model):
             'target': 'new',
             'url': whatsapp_api_url
         }
+
+    def action_send_email(self):
+        mail_template = self.env.ref('library_management_system.email_template_invoice')
+        mail_template.send_mail(self.id, force_send=True)
+

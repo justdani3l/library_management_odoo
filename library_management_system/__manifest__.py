@@ -11,6 +11,7 @@
 
         'data/sequence_member_data.xml',
         'data/sequence_invoice_data.xml',
+        'data/mail_template_data.xml',
 
         'report/library_invoice_templates.xml',
         'report/report.xml',
