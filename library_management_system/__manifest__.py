@@ -9,6 +9,8 @@
     'depends': ['base', 'mail', 'calendar', 'sale'],
     'data': [
 
+        'security/ir.model.access.csv',
+
         'data/sequence_member_data.xml',
         'data/sequence_invoice_data.xml',
         'data/mail_template_data.xml',
