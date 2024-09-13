@@ -5,3 +5,4 @@ access_library_categories,access.library.categories,model_library_categories,,1,
 access_library_employees,access.library.employees,model_library_employees,,1,1,1,1
 access_library_invoice,access.library.invoice,model_library_invoice,,1,1,1,1
 access_library_member,access.library.member,model_library_member,,1,1,1,1
+access_library_dashboard,access.library.dashboard,model_library_dashboard,,1,1,1,1
